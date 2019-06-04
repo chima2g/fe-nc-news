@@ -18,7 +18,7 @@ class ArticleCard extends Component {
         return article && (<div>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
-            <p>Author: {article.author}, Topic: {article.topic}, Created at: {article.created_at}, Votes: {article.votes}</p>
+            <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes}</p>
         </div>)
     }
 }
