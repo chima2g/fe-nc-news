@@ -16,13 +16,13 @@ class ArticlesList extends Component {
         })
     }
 
-    render() {
+    render() {console.dir(this.props);
         const {articles} = this.state;
         return ( articles && 
             <div>
                 <ul>
                     {articles.map(article =>
-                        <Link to={`${article.article_id}`}>
+                        <Link to={article.article_id}>
                             <li key={article.article_id}>
                                 <h2>{article.title}</h2>
                                 <p>Author: {article.author}, Topic: {article.topic}, Article ID: {article.article_id}, Created: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes}, Comments: {article.comment_count}</p>

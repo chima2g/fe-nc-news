@@ -1,10 +1,12 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import './App.css';
 import ArticlesList from './Article/ArticlesList';
 import ArticleCard from './Article/ArticleCard';
+import UserProfile from './User/UserProfile';
 import axios from 'axios';
 import baseUrl from './utils';
+import { Link } from '@reach/router';
 
 class App extends React.Component {
   
@@ -23,10 +25,20 @@ class App extends React.Component {
           </label>
           <button type="button" onClick={this.handleLoginSubmit}>Login</button>
         </form>}
+
       {loggedInUsername &&<button type="button" onClick={this.handleLogout}>Logout</button>}
+        <div>
+          <Link to="/">
+            <button>Home</button>
+          </Link>
+          <Link to="users/tickle122">
+            <button>Profile</button>
+          </Link>
+        </div>
         <Router>
           <ArticlesList path='/articles'/>
           <ArticleCard path='/articles/:article_id' />
+          <UserProfile path='/users/:username' loggedInUsername={this.state.loggedInUsername} />
         </Router>
       </div>
     )
@@ -37,12 +49,17 @@ class App extends React.Component {
   }
 
   handleLoginSubmit = (event) => {
-    axios.get(`${baseUrl}/users/${this.state.usernameToLogin}`)
+    const {usernameToLogin} = this.state;
+
+    axios.get(`${baseUrl}/users/${usernameToLogin}`)
         .then(response => {  
           const {user} = response.data;
-          
+           
           if(user)
-            this.setState({loggedInUsername: this.state.usernameToLogin, usernameToLogin : null});
+          {
+            this.setState({loggedInUsername: usernameToLogin, usernameToLogin : null});
+            navigate(`../users/${usernameToLogin}`, {state: {justLoggedIn : true}});
+          }
         })
         .catch(console.error);
   }

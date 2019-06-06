@@ -1,0 +1,6 @@
+how to toggle state variables in browser
+Why did we have to `${article.article_id}` but on other lines it was OK to {article.article_id}
+
+//TODO: Do we need to set state or just navigate... think we just navigate and once anything needs to know if you're logged, it'll take the value from localStorage
+
+Users folder doesn't fit the naming convention
