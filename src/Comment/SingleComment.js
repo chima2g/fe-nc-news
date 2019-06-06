@@ -9,10 +9,14 @@ class SingleComment extends Component {
     render() {
         const {comment} = this.props; 
         const {voteChange} = this.state; 
+        const {loggedInUsername} = this.props;
 
         return <div>
-                <button disabled={voteChange === 1} onClick={this.voteOnComment(1)}>Up Vote</button>
-                <button disabled={voteChange === -1} onClick={this.voteOnComment(-1)}>Down Vote</button>
+                {loggedInUsername && 
+                    <div>
+                        <button disabled={voteChange === 1} onClick={this.voteOnComment(1)}>Up Vote</button>
+                        <button disabled={voteChange === -1} onClick={this.voteOnComment(-1)}>Down Vote</button>
+                </div>}
                 <h3>Comment {comment.comment_id}: </h3>
                 <p>{comment.body}</p>
                 <p>Author: {comment.author}, Created: {new Date(comment.created_at).toLocaleString()}, Votes: {comment.votes + voteChange}</p>

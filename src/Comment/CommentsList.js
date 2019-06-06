@@ -15,9 +15,11 @@ class CommentsList extends Component {
 
     render() {
         const {comments} = this.state;
+        const {loggedInUsername} = this.props;
+        
         return ( comments && 
             <div>
-                {comments.map(comment => <SingleComment comment={comment} key={comment.comment_id}/> )}
+                {comments.map(comment => <SingleComment comment={comment} key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
             </div>
         );
     }

@@ -36,8 +36,8 @@ class App extends React.Component {
         </div>
         <Router>
           <Redirect from="/" to="articles" noThrow/>
-          <ArticlesList path='/articles'/>
-          <SingleArticle path='/articles/:article_id' />
+          <ArticlesList path='/articles' />
+          <SingleArticle path='/articles/:article_id' loggedInUsername={this.state.loggedInUsername}/>
           <UserProfile path='/users/:username' loggedInUsername={this.state.loggedInUsername} />
         </Router>
       </div>
