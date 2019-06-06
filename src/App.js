@@ -30,7 +30,7 @@ class App extends React.Component {
           <Link to="/">
             <button>Home</button>
           </Link>
-          <Link to="users/tickle122">
+           <Link to={`users/${this.state.loggedInUsername}`}>
             <button>Profile</button>
           </Link>
         </div>
