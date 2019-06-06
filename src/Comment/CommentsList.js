@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import baseUrl from '../utils'
-// import SingleComment from '../Comments/SingleComment'
+import SingleComment from './SingleComment'
 
 class CommentsList extends Component { 
     state = { comments : [] };
@@ -17,13 +17,7 @@ class CommentsList extends Component {
         const {comments} = this.state;
         return ( comments && 
             <div>
-                {comments.map(comment =>
-                    <div>
-                        <h3>Comment {comment.comment_id}: </h3>
-                        <p>{comment.body}</p>
-                        <p>Author: {comment.author}, Created: {new Date(comment.created_at).toLocaleString()}, Votes: {comment.votes}</p>
-                    </div>
-                    )}
+                {comments.map(comment => <SingleComment comment={comment} key={comment.comment_id}/> )}
             </div>
         );
     }
