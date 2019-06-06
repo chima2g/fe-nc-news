@@ -16,6 +16,7 @@ class SingleComment extends Component {
                     <div>
                         <button disabled={voteChange === 1} onClick={this.voteOnComment(1)}>Up Vote</button>
                         <button disabled={voteChange === -1} onClick={this.voteOnComment(-1)}>Down Vote</button>
+                        {comment.author === loggedInUsername && <button onClick={this.deleteComment}>Delete</button>}
                 </div>}
                 <h3>Comment {comment.comment_id}: </h3>
                 <p>{comment.body}</p>
@@ -36,6 +37,10 @@ class SingleComment extends Component {
                 this.setState({voteChange});
             })
         }    
+    }
+
+    deleteComment = () => {
+        axios.delete(`${baseUrl}/comments/${this.props.comment.comment_id}`)
     }
 }
 

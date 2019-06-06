@@ -49,8 +49,9 @@ class App extends React.Component {
   }
 
   handleLoginSubmit = (event) => {
+    event.preventDefault();
     const {usernameToLogin} = this.state;
-
+    
     axios.get(`${baseUrl}/users/${usernameToLogin}`)
         .then(response => {  
           const {user} = response.data;

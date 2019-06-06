@@ -7,8 +7,8 @@ class UserProfile extends React.Component {
         let {loggedInUsername} = this.props;
 
         return <div>
-                    {justLoggedIn && <p>Welcome back {loggedInUsername}</p>}
-                    <p>{(loggedInUsername)? "User Profile" : "Please log in!"}</p>
+                    {justLoggedIn && <p>Welcome back!</p>}
+                    <p>{(loggedInUsername)? `User Profile: ${loggedInUsername}` : "Please log in!"}</p>
                 </div>
     }
 }  
