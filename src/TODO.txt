@@ -8,14 +8,12 @@ Users folder doesn't fit the naming convention
 
 Todays's tasks
 8. post a new comment to an existing article.
-Add deleting comments
+9. delete my own comments.
+commentsList is now a dumb function and needs to be called correctly with just 2 arguements
 
 
 Friday's tasks
 Add article searching / sorting
-9. delete my own comments.
-10. vote on an article and immediately see the change.
-11. vote on a comment and immediately see the change.
 
 Saturdays tasks
 18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article

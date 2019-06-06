@@ -5,12 +5,19 @@ import CommentsList from '../Comment/CommentsList'
 import NewComment from '../Comment/NewComment'
 
 class SingleArticle extends Component { 
-    state = { article : null, voteChange : 0, enableCommentEditing : false};
+    state = { article : null, comments : [], voteChange : 0, enableCommentEditing : false};
 
     componentDidMount() {
         axios.get(`${baseUrl}/articles/${this.props.article_id}`)
-        .then(response =>       {
-            this.setState({article : response.data.article});
+        .then(response => {
+            const {article} = response.data;
+
+            axios.get(`${baseUrl}/articles/${this.props.article_id}/comments`)
+            .then(response => {
+                const {comments} = response.data;
+
+                this.setState({article, comments});
+            });
         });
     }
 
@@ -32,7 +39,7 @@ class SingleArticle extends Component {
             <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes + voteChange}</p>
             {this.state.enableCommentEditing && 
                 <NewComment article_id={article.article_id} loggedInUsername={loggedInUsername} editArticle={this.editArticle}/>}
-            <CommentsList article_id={this.props.article_id} loggedInUsername={loggedInUsername}/>
+            <CommentsList comments={this.state.comments} loggedInUsername={loggedInUsername}/>
         </div>)
     }
 
@@ -56,6 +63,9 @@ class SingleArticle extends Component {
 
     editArticle = (newComment) => {
         this.editComment(false)();
+
+        const [...oldComments] = this.state.comments;
+        this.setState({comments : [newComment, ...oldComments]});
     }
 }
 

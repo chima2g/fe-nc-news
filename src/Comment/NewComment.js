@@ -28,7 +28,6 @@ class NewComment extends Component {
         .then(response => {  
             this.props.editArticle(response.data.comment);
         })
-        .catch(console.error)
     }
 }
 
