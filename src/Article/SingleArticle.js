@@ -13,13 +13,14 @@ class SingleArticle extends Component {
         });
     }
 
-    render(){
+    render() {
         const {article} = this.state;
         const {voteChange} = this.state;
         
-
         return article && (<div>
-            <h2>{article.title}</h2><button disabled={voteChange === 1} onClick={this.voteOnArticle(1)}>Up Vote</button><button disabled={voteChange === -1} onClick={this.voteOnArticle(-1)}>Down Vote</button>
+            <h2>{article.title}</h2>
+            <button disabled={voteChange === 1} onClick={this.voteOnArticle(1)}>Up Vote</button>
+            <button disabled={voteChange === -1} onClick={this.voteOnArticle(-1)}>Down Vote</button>
             <p>{article.body}</p>
             <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes + voteChange}</p>
             <CommentsList article_id={this.props.article_id}/>
