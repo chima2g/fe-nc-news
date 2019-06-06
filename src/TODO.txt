@@ -6,8 +6,6 @@ Why did we have to `${article.article_id}` but on other lines it was OK to {arti
 Users folder doesn't fit the naming convention
 
 
-Todays's tasks
-
 
 Friday's tasks
 need to implement optimistic comment deleting & comment adding???
@@ -17,7 +15,5 @@ Add article searching / sorting
 Saturdays tasks
 18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
 19. not be allowed to post an article if I have not filled in all of the form boxes.
-20. not be able to log in with a non-existent username.
-25. delete my own articles.
 CSSS!!!!!!
 

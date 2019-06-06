@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SingleComment from './SingleComment'
 
-class CommentsList extends Component { 
+const CommentsList = (props) => { 
+   
+    const {comments, loggedInUsername} = props;
 
-    render() {
-        const {comments, loggedInUsername} = this.props;
-
-        return ( comments && 
-            <div>
-                {comments.map(comment => <SingleComment comment={comment} deleteComment={this.props.deleteComment}key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
-            </div>
-        );
-    }
+    return ( comments && 
+        <div>
+            {comments.map(comment => <SingleComment comment={comment} deleteComment={props.deleteComment}key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
+        </div>
+    );
 }
+
 export default CommentsList;
