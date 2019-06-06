@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import baseUrl from '../utils'
 
-class ArticleCard extends Component { 
-    state = { article : null };
 
-    componentDidMount() {
-        axios.get(`${baseUrl}/articles/${this.props.article_id}`)
-        .then(response =>       {
-            this.setState({article : response.data.article});
-        });
-    }
-
-    render(){ 
-        const {article} = this.state;
-
-        return article && (<div>
+const ArticleCard = ({article}) => 
+    {
+        return <li key={article.article_id}>
             <h2>{article.title}</h2>
-            <p>{article.body}</p>
-            <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes}</p>
-        </div>)
+            <p>Author: {article.author}, Topic: {article.topic}, Article ID: {article.article_id}, Created: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes}, Comments: {article.comment_count}</p>
+        </li>
     }
-}
+
 export default ArticleCard;

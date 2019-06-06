@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from '@reach/router';
 import baseUrl from '../utils';
+import ArticleCard from './ArticleCard';
 
 class ArticlesList extends Component {
 
@@ -10,23 +11,19 @@ class ArticlesList extends Component {
     componentDidMount() {
         axios.get(`${baseUrl}/articles`)
         .then(response => {
-            console.log(response);
             const {articles} = response.data;
             this.setState({articles});
         })
     }
 
-    render() {console.dir(this.props);
+    render() {
         const {articles} = this.state;
         return ( articles && 
             <div>
                 <ul>
                     {articles.map(article =>
-                        <Link to={article.article_id}>
-                            <li key={article.article_id}>
-                                <h2>{article.title}</h2>
-                                <p>Author: {article.author}, Topic: {article.topic}, Article ID: {article.article_id}, Created: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes}, Comments: {article.comment_count}</p>
-                            </li>
+                        <Link to={`${article.article_id}`} key={article.article_id}>
+                            <ArticleCard article={article} />
                         </Link>
                     )}
                 </ul>

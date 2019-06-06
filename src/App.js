@@ -1,12 +1,11 @@
 import React from 'react';
-import { Router, navigate } from '@reach/router';
+import { Router, navigate, Link, Redirect } from '@reach/router';
 import './App.css';
 import ArticlesList from './Article/ArticlesList';
-import ArticleCard from './Article/ArticleCard';
+import SingleArticle from './Article/SingleArticle';
 import UserProfile from './User/UserProfile';
 import axios from 'axios';
 import baseUrl from './utils';
-import { Link } from '@reach/router';
 
 class App extends React.Component {
   
@@ -36,8 +35,9 @@ class App extends React.Component {
           </Link>
         </div>
         <Router>
+          <Redirect from="/" to="articles" noThrow/>
           <ArticlesList path='/articles'/>
-          <ArticleCard path='/articles/:article_id' />
+          <SingleArticle path='/articles/:article_id' />
           <UserProfile path='/users/:username' loggedInUsername={this.state.loggedInUsername} />
         </Router>
       </div>
