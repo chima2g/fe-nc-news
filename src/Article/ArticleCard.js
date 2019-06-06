@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const ArticleCard = ({article}) => 
     {
         return <li key={article.article_id}>

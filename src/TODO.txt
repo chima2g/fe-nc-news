@@ -4,3 +4,22 @@ Why did we have to `${article.article_id}` but on other lines it was OK to {arti
 //TODO: Do we need to set state or just navigate... think we just navigate and once anything needs to know if you're logged, it'll take the value from localStorage
 
 Users folder doesn't fit the naming convention
+
+
+Todays's tasks
+Add voting to comments & articles
+Add deleting articles & comments
+Add article searching / sorting
+
+Friday's tasks
+8. post a new comment to an existing article.
+9. delete my own comments.
+25. delete my own articles.
+10. vote on an article and immediately see the change.
+11. vote on a comment and immediately see the change.
+
+Saturdays tasks
+18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
+19. not be allowed to post an article if I have not filled in all of the form boxes.
+20. not be able to log in with a non-existent username.
+
