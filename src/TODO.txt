@@ -1,19 +1,12 @@
-how to toggle state variables in browser
-Why did we have to `${article.article_id}` but on other lines it was OK to {article.article_id}
-
-//TODO: Do we need to set state or just navigate... think we just navigate and once anything needs to know if you're logged, it'll take the value from localStorage
-
 Users folder doesn't fit the naming convention
 
 
-
 Friday's tasks
+19. not be allowed to post an COMMENT if I have not filled in all of the form boxes.
 need to implement optimistic comment deleting & comment adding???
-commentsList is now a dumb function and needs to be called correctly with just 2 arguements
 Add article searching / sorting
-
-Saturdays tasks
 18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
-19. not be allowed to post an article if I have not filled in all of the form boxes.
+
+Saturday
 CSSS!!!!!!
 

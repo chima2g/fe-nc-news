@@ -10,7 +10,7 @@ class NewComment extends Component {
                 <label>
                     <textarea value={this.state.value} placeholder="Your comment" rows="10" cols="50" onChange={this.handleCommentChange} />
                 </label>
-                <button type="button" onClick={this.handleLoginSubmit}>Post</button>
+                <button type="button" disabled={(this.state.body)? false : true} onClick={this.handleLoginSubmit}>Post</button>
             </form>
     }
 
