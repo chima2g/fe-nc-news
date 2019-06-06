@@ -41,6 +41,7 @@ class SingleComment extends Component {
 
     deleteComment = () => {
         axios.delete(`${baseUrl}/comments/${this.props.comment.comment_id}`)
+        .then(this.props.deleteComment(this.props.comment.comment_id));
     }
 }
 

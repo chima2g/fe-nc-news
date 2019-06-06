@@ -8,7 +8,7 @@ class CommentsList extends Component {
 
         return ( comments && 
             <div>
-                {comments.map(comment => <SingleComment comment={comment} key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
+                {comments.map(comment => <SingleComment comment={comment} deleteComment={this.props.deleteComment}key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
             </div>
         );
     }

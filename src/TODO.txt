@@ -7,12 +7,11 @@ Users folder doesn't fit the naming convention
 
 
 Todays's tasks
-8. post a new comment to an existing article.
-9. delete my own comments.
-commentsList is now a dumb function and needs to be called correctly with just 2 arguements
 
 
 Friday's tasks
+need to implement optimistic comment deleting & comment adding???
+commentsList is now a dumb function and needs to be called correctly with just 2 arguements
 Add article searching / sorting
 
 Saturdays tasks

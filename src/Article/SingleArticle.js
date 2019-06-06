@@ -39,7 +39,7 @@ class SingleArticle extends Component {
             <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes + voteChange}</p>
             {this.state.enableCommentEditing && 
                 <NewComment article_id={article.article_id} loggedInUsername={loggedInUsername} editArticle={this.editArticle}/>}
-            <CommentsList comments={this.state.comments} loggedInUsername={loggedInUsername}/>
+            <CommentsList comments={this.state.comments} deleteComment={this.deleteComment}loggedInUsername={loggedInUsername}/>
         </div>)
     }
 
@@ -66,6 +66,14 @@ class SingleArticle extends Component {
 
         const [...oldComments] = this.state.comments;
         this.setState({comments : [newComment, ...oldComments]});
+    }
+
+    deleteComment = (comment_id) => {
+        const {comments} = this.state;
+        const comentToDelete = comments.find(comment => comment.comment_id === comment_id)
+        const [commentToDelete, ...commentsToKeep] = comments;
+
+        this.setState({comments : commentsToKeep})
     }
 }
 
