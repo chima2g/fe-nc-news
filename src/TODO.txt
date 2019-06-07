@@ -1,11 +1,10 @@
-Users folder doesn't fit the naming convention
-
-
 Friday's tasks
-19. not be allowed to post an COMMENT if I have not filled in all of the form boxes.
-need to implement optimistic comment deleting & comment adding???
 Add article searching / sorting
+need to implement optimistic comment deleting & comment adding???
 18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
+make voteOnArticle / voteOnComment generic in utils
+make DisplayList generic to Comments & Article
+
 
 Saturday
 CSSS!!!!!!

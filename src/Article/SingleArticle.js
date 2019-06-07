@@ -70,10 +70,9 @@ class SingleArticle extends Component {
 
     deleteComment = (comment_id) => {
         const {comments} = this.state;
-        const comentToDelete = comments.find(comment => comment.comment_id === comment_id)
-        const [commentToDelete, ...commentsToKeep] = comments;
-
-        this.setState({comments : commentsToKeep})
+        const [...existingComments] = comments;
+        const newComments = existingComments.filter(comment => comment.comment_id !== comment_id)
+        this.setState({comments : newComments})
     }
 }
 

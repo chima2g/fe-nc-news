@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, navigate, Link, Redirect } from '@reach/router';
 import './App.css';
-import ArticlesList from './Article/ArticlesList';
+import ArticlesDisplay from './Article/ArticlesDisplay';
 import SingleArticle from './Article/SingleArticle';
 import UserProfile from './User/UserProfile';
 import axios from 'axios';
@@ -36,7 +36,7 @@ class App extends React.Component {
         </div>
         <Router>
           <Redirect from="/" to="articles" noThrow/>
-          <ArticlesList path='/articles' />
+          <ArticlesDisplay path='/articles' />
           <SingleArticle path='/articles/:article_id' loggedInUsername={this.state.loggedInUsername}/>
           <UserProfile path='/users/:username' loggedInUsername={this.state.loggedInUsername} />
         </Router>
