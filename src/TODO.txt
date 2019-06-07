@@ -1,8 +1,7 @@
 Friday's tasks
-sort articles by: comment_count
 need to implement optimistic comment adding???
-13. log-in clearly with a suggested or default user (as I have no knowledge of the users in the database)
-18. be directed to a 404 page if I go on a non-existent path/a path for a non-existent article
+Remains logged in after refresh (local/session storage)
+18. be directed to a 404 page if I go on a path for a non-existent article
 
 make DisplayList generic to Comments
 Does it matter that we didn't use TDD
@@ -13,3 +12,4 @@ search submit butttons aren't submit types... there's some functionality you're 
 Saturday
 CSSS!!!!!!
 
+No `console.log`s / comments ... Are comments explaining the code OK, e.g. "Changes the value in the given"
