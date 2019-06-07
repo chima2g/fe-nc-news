@@ -39,12 +39,12 @@ class SingleArticle extends Component {
             <p>Author: {article.author}, Topic: {article.topic}, Created at: {new Date(article.created_at).toLocaleString()}, Votes: {article.votes + voteChange}</p>
             {this.state.enableCommentEditing && 
                 <NewComment article_id={article.article_id} loggedInUsername={loggedInUsername} editArticle={this.editArticle}/>}
-            <CommentsList comments={this.state.comments} deleteComment={this.deleteComment}loggedInUsername={loggedInUsername}/>
+            <CommentsList comments={this.state.comments} deleteComment={this.deleteComment} unDeleteComment={this.unDeleteComment} loggedInUsername={loggedInUsername}/>
         </div>)
     }
 
     voteOnArticle = (voteIncrease) => {
-        return  () => {    
+        return  () => {
             let voteChange = this.state.voteChange;
             voteChange += voteIncrease;
             this.setState({voteChange});
@@ -72,7 +72,12 @@ class SingleArticle extends Component {
         const {comments} = this.state;
         const [...existingComments] = comments;
         const newComments = existingComments.filter(comment => comment.comment_id !== comment_id)
-        this.setState({comments : newComments})
+
+        this.setState({comments : newComments, commentsPreDelete : comments})
+    }
+
+    unDeleteComment = () => {
+        this.setState({comments : this.state.commentsPreDelete})
     }
 }
 

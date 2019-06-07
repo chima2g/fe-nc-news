@@ -7,7 +7,7 @@ const CommentsList = (props) => {
 
     return ( comments && 
         <div>
-            {comments.map(comment => <SingleComment comment={comment} deleteComment={props.deleteComment}key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
+            {comments.map(comment => <SingleComment comment={comment} deleteComment={props.deleteComment} unDeleteComment={props.unDeleteComment} key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
         </div>
     );
 }
