@@ -82,7 +82,7 @@ class App extends React.Component {
     event.preventDefault();
     const { usernameToLogin } = this.state;
 
-    getUser(usernameToLogin).then(user => {
+    getUser(usernameToLogin, user => {
       if (user) {
         localStorage.setItem("loggedInUsername", usernameToLogin);
 

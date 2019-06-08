@@ -24,9 +24,9 @@ class ArticlesDisplay extends Component {
             Topic
             <select
               name="topic"
-              onChange={this.handleChange({
-                searchTopic: this.state.searchTopic
-              })}
+              onChange={event => {
+                this.setState({ searchTopic: event.target.value });
+              }}
             >
               <option value="any" key="any" />
               {this.state.topics.map(topic => (
@@ -41,18 +41,18 @@ class ArticlesDisplay extends Component {
             <input
               type="text"
               name="author"
-              onChange={this.handleChange({
-                searchAuthor: this.state.searchAuthor
-              })}
+              onChange={event => {
+                this.setState({ searchAuthor: event.target.value });
+              }}
             />
           </label>
           <label>
             Sort by
             <select
               name="sort_by"
-              onChange={this.handleChange({
-                searchSort: this.state.searchSort
-              })}
+              onChange={event => {
+                this.setState({ searchSort: event.target.value });
+              }}
             >
               <option value="any" key="any" />
               <option value="title" key="title">
