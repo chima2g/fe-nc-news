@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-import baseUrl from "../utils";
+import { getArticles, getTopics } from "../utils";
 import ArticlesList from "./ArticlesList";
 
 class ArticlesDisplay extends Component {
@@ -13,15 +12,8 @@ class ArticlesDisplay extends Component {
   };
 
   componentDidMount() {
-    axios.get(`${baseUrl}/articles`).then(response => {
-      const { articles } = response.data;
-      this.setState({ articles });
-    });
-
-    axios.get(`${baseUrl}/topics`).then(response => {
-      const { topics } = response.data;
-      this.setState({ topics });
-    });
+    getArticles().then(articles => this.setState({ articles }));
+    getTopics().then(topics => this.setState({ topics }));
   }
 
   render() {
@@ -126,10 +118,7 @@ class ArticlesDisplay extends Component {
       }
     });
 
-    axios.get(`${baseUrl}/articles${searchTerm}`).then(response => {
-      const { articles } = response.data;
-      this.setState({ articles });
-    });
+    getArticles(searchTerm).then(articles => this.setState({ articles }));
   };
 }
 

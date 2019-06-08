@@ -4,8 +4,7 @@ import "./App.css";
 import ArticlesDisplay from "./Article/ArticlesDisplay";
 import SingleArticle from "./Article/SingleArticle";
 import UserProfile from "./User/UserProfile";
-import axios from "axios";
-import baseUrl from "./utils";
+import { getUser } from "./utils";
 import NoMatch from "./NoMatch";
 
 class App extends React.Component {
@@ -13,9 +12,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const loggedInUsername = localStorage.getItem("loggedInUsername");
-    console.log("l1", loggedInUsername);
     if (loggedInUsername) this.setState({ loggedInUsername });
-    console.log("l2", loggedInUsername);
   }
 
   render() {
@@ -85,9 +82,7 @@ class App extends React.Component {
     event.preventDefault();
     const { usernameToLogin } = this.state;
 
-    axios.get(`${baseUrl}/users/${usernameToLogin}`).then(response => {
-      const { user } = response.data;
-
+    getUser(usernameToLogin).then(user => {
       if (user) {
         localStorage.setItem("loggedInUsername", usernameToLogin);
 

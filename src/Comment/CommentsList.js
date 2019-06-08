@@ -1,15 +1,24 @@
-import React from 'react';
-import SingleComment from './SingleComment'
+import React from "react";
+import SingleComment from "./SingleComment";
 
-const CommentsList = (props) => { 
-   
-    const {comments, loggedInUsername} = props;
+const CommentsList = props => {
+  const { comments, loggedInUsername } = props;
 
-    return ( comments && 
-        <div>
-            {comments.map(comment => <SingleComment comment={comment} deleteComment={props.deleteComment} unDeleteComment={props.unDeleteComment} key={comment.comment_id} loggedInUsername={loggedInUsername}/> )}
-        </div>
-    );
-}
+  return (
+    comments && (
+      <div>
+        {comments.map(comment => (
+          <SingleComment
+            comment={comment}
+            deleteComment={props.deleteComment}
+            unDeleteComment={props.unDeleteComment}
+            key={comment.comment_id}
+            loggedInUsername={loggedInUsername}
+          />
+        ))}
+      </div>
+    )
+  );
+};
 
 export default CommentsList;

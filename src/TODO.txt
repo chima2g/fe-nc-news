@@ -1,10 +1,8 @@
 Friday's tasks
 need to implement optimistic comment adding???
-Remains logged in after refresh (local/session storage)
 18. be directed to a 404 page if I go on a path for a non-existent article
 
 make DisplayList generic to Comments
-Does it matter that we didn't use TDD
 move axios requests to utils
 make voteOnArticle / voteOnComment generic in utils
 search submit butttons aren't submit types... there's some functionality you're missing out on for free

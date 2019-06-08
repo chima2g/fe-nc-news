@@ -1,34 +1,49 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import baseUrl from '../utils'
+import React, { Component } from "react";
+import { postComment } from "../utils";
 
 class NewComment extends Component {
-    state = {body : null}
+  state = { body: null };
 
-    render() {
-        return <form>
-                <label>
-                    <textarea value={this.state.value} placeholder="Your comment" rows="10" cols="50" onChange={this.handleCommentChange} />
-                </label>
-                <button type="button" disabled={(this.state.body)? false : true} onClick={this.handleLoginSubmit}>Post</button>
-            </form>
-    }
+  render() {
+    return (
+      <form>
+        <label>
+          <textarea
+            value={this.state.value}
+            placeholder="Your comment"
+            rows="10"
+            cols="50"
+            onChange={this.handleCommentChange}
+          />
+        </label>
+        <button
+          type="button"
+          disabled={this.state.body ? false : true}
+          onClick={this.handleLoginSubmit}
+        >
+          Post
+        </button>
+      </form>
+    );
+  }
 
-    handleCommentChange = (event) => {
-        this.setState({body: event.target.value});
-    }
-    
-    handleLoginSubmit = (event) => {
-        event.preventDefault();
+  handleCommentChange = event => {
+    this.setState({ body: event.target.value });
+  };
 
-        const {body} = this.state;
-        const {loggedInUsername} = this.props;
+  handleLoginSubmit = event => {
+    event.preventDefault();
 
-        axios.post(`${baseUrl}/articles/${this.props.article_id}/comments`, {body, username: loggedInUsername})
-        .then(response => {  
-            this.props.editArticle(response.data.comment);
-        })
-    }
+    const { body } = this.state;
+    const { loggedInUsername } = this.props;
+
+    postComment(this.props.article_id, {
+      body,
+      username: loggedInUsername
+    }).then(comment => {
+      this.props.editArticle(comment);
+    });
+  };
 }
 
 export default NewComment;
