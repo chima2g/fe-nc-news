@@ -11,7 +11,7 @@ const CommentsList = props => {
           <SingleComment
             comment={comment}
             deleteComment={props.deleteComment}
-            unDeleteComment={props.unDeleteComment}
+            undoDeleteComment={props.undoDeleteComment}
             key={comment.comment_id}
             loggedInUsername={loggedInUsername}
           />

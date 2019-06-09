@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { vote, deleteComment } from "../utils";
+import { vote, deleteComment } from "../Util/utils";
 
 class SingleComment extends Component {
   state = { voteChange: 0 };
@@ -55,7 +55,7 @@ class SingleComment extends Component {
     this.props.deleteComment(this.props.comment.comment_id);
 
     deleteComment(this.props.comment.comment_id).catch(
-      () => this.props.unDeleteComment
+      () => this.props.undoDeleteComment
     );
   };
 }

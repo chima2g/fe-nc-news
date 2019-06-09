@@ -1,48 +1,62 @@
 import React, { Component } from "react";
-import { postComment } from "../utils";
+import { navigate } from "@reach/router";
+import { postComment } from "../Util/utils";
+import loading from "../Util/loading.gif";
 
 class NewComment extends Component {
-  state = { body: null };
+  state = { body: null, loading: false };
 
   render() {
-    return (
-      <form>
-        <label>
-          <textarea
-            value={this.state.value}
-            placeholder="Your comment"
-            rows="10"
-            cols="50"
-            onChange={this.handleCommentChange}
-          />
-        </label>
-        <button
-          type="button"
-          disabled={this.state.body ? false : true}
-          onClick={this.handleLoginSubmit}
-        >
-          Post
-        </button>
-      </form>
-    );
+    if (this.state.loading)
+      return (
+        <img src={loading} alt="Loading animation" height="25%" width="25%" />
+      );
+    else
+      return (
+        <form>
+          <label>
+            <textarea
+              value={this.state.body ? this.state.body : ""}
+              placeholder="Your comment"
+              rows="10"
+              cols="50"
+              onChange={this.handleCommentChange}
+            />
+          </label>
+          <button
+            type="button"
+            disabled={this.state.body ? false : true}
+            onClick={this.handleCommentSubmit}
+          >
+            Post
+          </button>
+        </form>
+      );
   }
 
   handleCommentChange = event => {
     this.setState({ body: event.target.value });
   };
 
-  handleLoginSubmit = event => {
+  handleCommentSubmit = event => {
     event.preventDefault();
 
-    const { body } = this.state;
-    const { loggedInUsername } = this.props;
+    this.setState({ loading: true });
 
     postComment(this.props.article_id, {
-      body,
-      username: loggedInUsername
-    }).then(comment => {
-      this.props.editArticle(comment);
-    });
+      body: this.state.body,
+      username: this.props.loggedInUsername
+    })
+      .then(comment => {
+        this.setState({ loading: false });
+        this.props.addCommentToArticle(comment);
+      })
+      .catch(error => {
+        this.setState({ loading: false });
+        navigate("../error", {
+          state: { msg: error.response.data.msg }
+        });
+      });
   };
 }
 

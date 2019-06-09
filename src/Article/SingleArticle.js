@@ -1,28 +1,43 @@
 import React, { Component } from "react";
-import { getArticle, getCommentsByArticleID, vote } from "../utils";
+import { getArticle, getCommentsByArticleID, vote } from "../Util/utils";
 import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
+import { errorMessage } from "../Util/utils";
 
 class SingleArticle extends Component {
   state = {
     article: null,
     comments: [],
     voteChange: 0,
-    enableCommentEditing: false
+    enableCommentEditing: false,
+    error: null
   };
 
   componentDidMount() {
-    getArticle(this.props.article_id).then(article => {
-      getCommentsByArticleID(this.props.article_id).then(comments =>
-        this.setState({ article, comments })
-      );
-    });
+    getArticle(this.props.article_id)
+      .then(article => {
+        getCommentsByArticleID(this.props.article_id).then(comments =>
+          this.setState({ article, comments, error: null })
+        );
+      })
+      .catch(error => {
+        this.setState({ error: error.response.data.msg });
+      });
   }
 
   render() {
     const { article } = this.state;
     const { voteChange } = this.state;
     const { loggedInUsername } = this.props;
+    const { error } = this.state;
+
+    if (error)
+      return (
+        <div>
+          <p>{error}</p>
+          {errorMessage}
+        </div>
+      );
 
     return (
       article && (
@@ -42,7 +57,15 @@ class SingleArticle extends Component {
               >
                 Down Vote
               </button>
-              <button onClick={this.editComment(true)}>Comment</button>
+              <button
+                onClick={() =>
+                  this.setState({
+                    enableCommentEditing: true
+                  })
+                }
+              >
+                Comment
+              </button>
               {/* {article.author === loggedInUsername && <button onClick={this.deleteArticle}>Delete</button>}                     */}
             </div>
           )}
@@ -56,13 +79,13 @@ class SingleArticle extends Component {
             <NewComment
               article_id={article.article_id}
               loggedInUsername={loggedInUsername}
-              editArticle={this.editArticle}
+              addCommentToArticle={this.addCommentToArticle}
             />
           )}
           <CommentsList
             comments={this.state.comments}
             deleteComment={this.deleteComment}
-            unDeleteComment={this.unDeleteComment}
+            undoDeleteComment={this.undoDeleteComment}
             loggedInUsername={loggedInUsername}
           />
         </div>
@@ -83,15 +106,13 @@ class SingleArticle extends Component {
     };
   };
 
-  editComment = enable => {
-    return () => this.setState({ enableCommentEditing: enable });
-  };
+  addCommentToArticle = newComment => {
+    this.setState({ enableCommentEditing: false });
 
-  editArticle = newComment => {
-    this.editComment(false)();
-
-    const [...oldComments] = this.state.comments;
-    this.setState({ comments: [newComment, ...oldComments] });
+    const [...existingComments] = this.state.comments;
+    this.setState({
+      comments: [newComment, ...existingComments]
+    });
   };
 
   deleteComment = comment_id => {
@@ -104,7 +125,7 @@ class SingleArticle extends Component {
     this.setState({ comments: newComments, commentsPreDelete: comments });
   };
 
-  unDeleteComment = () => {
+  undoDeleteComment = () => {
     this.setState({ comments: this.state.commentsPreDelete });
   };
 }

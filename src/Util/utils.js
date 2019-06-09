@@ -1,6 +1,15 @@
 import axios from "axios";
+import React from "react";
+import { Link } from "@reach/router";
 
 export const baseUrl = "https://be-nc-news-chima2g.herokuapp.com/api";
+
+export const errorMessage = (
+  <p>
+    Not to worry, you can always head back to the warm embrace of our{" "}
+    <Link to={"/"}>homepage</Link>
+  </p>
+);
 
 export const getUser = username => {
   return axios.get(`${baseUrl}/users/${username}`).then(response => {

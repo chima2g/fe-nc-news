@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { getArticles, getTopics } from "../utils";
+import { navigate } from "@reach/router";
+import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
+import loading from "../Util/loading.gif";
 
 class ArticlesDisplay extends Component {
   state = {
@@ -8,18 +10,19 @@ class ArticlesDisplay extends Component {
     topics: [],
     searchTopic: "any",
     searchSort: "any",
-    searchAuthor: ""
+    searchAuthor: "",
+    loading: true
   };
 
   componentDidMount() {
     getArticles().then(articles => this.setState({ articles }));
-    getTopics().then(topics => this.setState({ topics }));
+    getTopics().then(topics => this.setState({ topics, loading: false }));
   }
 
   render() {
     return (
       <div>
-        <form action="/action_page.php">
+        <form>
           <label>
             Topic
             <select
@@ -79,10 +82,20 @@ class ArticlesDisplay extends Component {
             search
           </button>
         </form>
-        <ArticlesList articles={this.state.articles} />
+        {this.getMain()}
       </div>
     );
   }
+
+  getMain = () => {
+    if (this.state.loading)
+      return (
+        <div>
+          <img src={loading} alt="Loading animation" height="25%" width="25%" />
+        </div>
+      );
+    else return <ArticlesList articles={this.state.articles} />;
+  };
 
   /* Changes the value in the given object's single key value pair to the target event's
    * value, e.g. changes { searchTopic : "any" } to { searchTopic : "coding" }.
@@ -118,7 +131,15 @@ class ArticlesDisplay extends Component {
       }
     });
 
-    getArticles(searchTerm).then(articles => this.setState({ articles }));
+    this.setState({ loading: true });
+    getArticles(searchTerm)
+      .then(articles => this.setState({ articles, loading: false }))
+      .catch(error => {
+        this.setState({ loading: false });
+        navigate("../error", {
+          state: { msg: error.response.data.msg }
+        });
+      });
   };
 }
 

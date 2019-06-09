@@ -4,11 +4,18 @@ import "./App.css";
 import ArticlesDisplay from "./Article/ArticlesDisplay";
 import SingleArticle from "./Article/SingleArticle";
 import UserProfile from "./User/UserProfile";
-import { getUser } from "./utils";
-import NoMatch from "./NoMatch";
+import { getUser } from "./Util/utils";
+import NoMatch from "./Util/NoMatch";
+import ErrorPage from "./Util/ErrorPage";
+// import loading from "./Util/loading.gif";
 
 class App extends React.Component {
-  state = { loggedInUsername: null, usernameToLogin: null };
+  state = {
+    loggedInUsername: null,
+    usernameToLogin: null,
+    error: null,
+    loading: false
+  };
 
   componentDidMount() {
     const loggedInUsername = localStorage.getItem("loggedInUsername");
@@ -49,14 +56,35 @@ class App extends React.Component {
             </button>
           </label>
         )}
-        <div>
-          <Link to="/">
-            <button>Home</button>
-          </Link>
-          <Link to={`users/${this.state.loggedInUsername}`}>
-            <button>Profile</button>
-          </Link>
-        </div>
+        {this.getNavBar()}
+        {this.getMain()}
+      </div>
+    );
+  }
+
+  getNavBar = () => {
+    return (
+      <div>
+        <Link to="/">
+          <button>Home</button>
+        </Link>
+        <Link to={`users/${this.state.loggedInUsername}`}>
+          <button>Profile</button>
+        </Link>
+      </div>
+    );
+  };
+
+  getMain = () => {
+    // if (this.state.loading)
+    //   return (
+    //     <div>
+    //       <img src={loading} alt="Loading animation" height="25%" width="25%" />
+    //     </div>
+    //   );
+    // else
+    return (
+      <div>
         <Router>
           <Redirect from="/" to="articles" noThrow />
           <ArticlesDisplay path="/articles" />
@@ -68,11 +96,12 @@ class App extends React.Component {
             path="/users/:username"
             loggedInUsername={this.state.loggedInUsername}
           />
+          <ErrorPage path="error" />
           <NoMatch default />
         </Router>
       </div>
     );
-  }
+  };
 
   handleLoginNameChange = event => {
     this.setState({ usernameToLogin: event.target.value });
@@ -82,19 +111,28 @@ class App extends React.Component {
     event.preventDefault();
     const { usernameToLogin } = this.state;
 
-    getUser(usernameToLogin, user => {
-      if (user) {
-        localStorage.setItem("loggedInUsername", usernameToLogin);
+    this.setState({ loading: true });
+    getUser(usernameToLogin)
+      .then(user => {
+        if (user) {
+          localStorage.setItem("loggedInUsername", usernameToLogin);
 
-        this.setState({
-          loggedInUsername: usernameToLogin,
-          usernameToLogin: null
+          this.setState({
+            loggedInUsername: usernameToLogin,
+            usernameToLogin: null,
+            loading: false
+          });
+          navigate(`../users/${usernameToLogin}`, {
+            state: { justLoggedIn: true }
+          });
+        }
+      })
+      .catch(error => {
+        this.setState({ loading: false });
+        navigate("../error", {
+          state: { msg: error.response.data.msg }
         });
-        navigate(`../users/${usernameToLogin}`, {
-          state: { justLoggedIn: true }
-        });
-      }
-    });
+      });
   };
 
   handleLogout = event => {
