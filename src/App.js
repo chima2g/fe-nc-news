@@ -43,7 +43,7 @@ class App extends React.Component {
                 onChange={this.handleLoginNameChange}
               />
             </label>
-            <button type="button" onClick={this.handleLoginSubmit}>
+            <button type="submit" onClick={this.handleLoginSubmit}>
               Login
             </button>
           </form>

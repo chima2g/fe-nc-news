@@ -1,9 +1,5 @@
-1) searching for unknown author causes an error
-profile page continues to say good to have you back after logout
-search submit butttons aren't submit types... there's some functionality you're missing out on for free
 CSSS!!!!!!
 
-2) user not found error message should be taken from window thing??
 3) login with bad username causes console log error when that's the first thing you do after loading the app.
 This has been removed by deleting programatic rendering in getMain
 4) No errors in the console

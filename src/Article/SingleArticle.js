@@ -66,7 +66,6 @@ class SingleArticle extends Component {
               >
                 Comment
               </button>
-              {/* {article.author === loggedInUsername && <button onClick={this.deleteArticle}>Delete</button>}                     */}
             </div>
           )}
           <p>{article.body}</p>

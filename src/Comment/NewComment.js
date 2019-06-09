@@ -24,7 +24,7 @@ class NewComment extends Component {
             />
           </label>
           <button
-            type="button"
+            type="submit"
             disabled={this.state.body ? false : true}
             onClick={this.handleCommentSubmit}
           >

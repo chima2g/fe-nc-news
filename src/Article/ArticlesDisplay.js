@@ -78,7 +78,7 @@ class ArticlesDisplay extends Component {
               </option>
             </select>
           </label>
-          <button type="button" onClick={this.handleSearchSubmit}>
+          <button type="submit" onClick={this.handleSearchSubmit}>
             search
           </button>
         </form>
