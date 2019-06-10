@@ -3,6 +3,7 @@ import { getArticle, getCommentsByArticleID, vote } from "../Util/utils";
 import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
 import { errorMessage } from "../Util/utils";
+import Button from "react-bootstrap/Button";
 
 class SingleArticle extends Component {
   state = {
@@ -45,19 +46,19 @@ class SingleArticle extends Component {
           <h2>{article.title}</h2>
           {loggedInUsername && (
             <div>
-              <button
+              <Button
                 disabled={voteChange === 1}
                 onClick={this.voteOnArticle(1)}
               >
                 Up Vote
-              </button>
-              <button
+              </Button>
+              <Button
                 disabled={voteChange === -1}
                 onClick={this.voteOnArticle(-1)}
               >
                 Down Vote
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() =>
                   this.setState({
                     enableCommentEditing: true
@@ -65,7 +66,7 @@ class SingleArticle extends Component {
                 }
               >
                 Comment
-              </button>
+              </Button>
             </div>
           )}
           <p>{article.body}</p>

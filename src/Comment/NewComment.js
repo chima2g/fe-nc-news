@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import { postComment } from "../Util/utils";
 import loading from "../Util/loading.gif";
+import Button from "react-bootstrap/Button";
 
 class NewComment extends Component {
   state = { body: null, loading: false };
@@ -23,13 +24,13 @@ class NewComment extends Component {
               onChange={this.handleCommentChange}
             />
           </label>
-          <button
+          <Button
             type="submit"
             disabled={this.state.body ? false : true}
             onClick={this.handleCommentSubmit}
           >
             Post
-          </button>
+          </Button>
         </form>
       );
   }

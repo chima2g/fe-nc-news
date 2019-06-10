@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, navigate, Link, Redirect } from "@reach/router";
+import { Router, navigate, Redirect } from "@reach/router";
 import "./App.css";
 import ArticlesDisplay from "./Article/ArticlesDisplay";
 import SingleArticle from "./Article/SingleArticle";
@@ -7,6 +7,7 @@ import UserProfile from "./User/UserProfile";
 import { getUser } from "./Util/utils";
 import NoMatch from "./Util/NoMatch";
 import ErrorPage from "./Util/ErrorPage";
+import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
 // import loading from "./Util/loading.gif";
 
 class App extends React.Component {
@@ -23,39 +24,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { loggedInUsername } = this.state;
-
     return (
       <div>
-        <img
+        {/* <img
           src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png"
           alt="Northcoders Logo"
           height="40%"
           width="40%"
-        />
-        {!loggedInUsername && (
-          <form>
-            <label>
-              <input
-                type="text"
-                name="login"
-                placeholder="jessjelly"
-                onChange={this.handleLoginNameChange}
-              />
-            </label>
-            <button type="submit" onClick={this.handleLoginSubmit}>
-              Login
-            </button>
-          </form>
-        )}
-        {loggedInUsername && (
-          <label>
-            Welcome {loggedInUsername}
-            <button type="button" onClick={this.handleLogout}>
-              Logout
-            </button>
-          </label>
-        )}
+        /> */}
         {this.getNavBar()}
         {this.getMain()}
       </div>
@@ -63,16 +39,48 @@ class App extends React.Component {
   }
 
   getNavBar = () => {
-    return (
-      <div>
-        <Link to="/">
-          <button>Home</button>
-        </Link>
-        <Link to={`users/${this.state.loggedInUsername}`}>
-          <button>Profile</button>
-        </Link>
-      </div>
-    );
+    {
+      const { loggedInUsername } = this.state;
+      return (
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand>NC News</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href={`/users/${this.state.loggedInUsername}`}>
+                Profile
+              </Nav.Link>
+            </Nav>
+            {!loggedInUsername && (
+              <Form inline>
+                <FormControl
+                  type="text"
+                  placeholder="jessjelly"
+                  className="mr-sm-2"
+                  onChange={this.handleLoginNameChange}
+                />
+                <Button
+                  type="submit"
+                  variant="outline-success"
+                  onClick={this.handleLoginSubmit}
+                >
+                  Login
+                </Button>
+              </Form>
+            )}
+            {loggedInUsername && (
+              <label>
+                Welcome {loggedInUsername}
+                <Button variant="outline-success" onClick={this.handleLogout}>
+                  Logout
+                </Button>
+              </label>
+            )}
+          </Navbar.Collapse>
+        </Navbar>
+      );
+    }
   };
 
   getMain = () => {
