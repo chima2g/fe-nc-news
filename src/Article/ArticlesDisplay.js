@@ -3,7 +3,18 @@ import { navigate } from "@reach/router";
 import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
 import loading from "../Util/loading.gif";
-import { Button, NavDropdown, FormControl, Card, Form } from "react-bootstrap";
+import logo from "./search-icon.png";
+import {
+  Button,
+  NavDropdown,
+  Dropdown,
+  DropdownButton,
+  FormControl,
+  Card,
+  Row,
+  Form,
+  InputGroup
+} from "react-bootstrap";
 
 class ArticlesDisplay extends Component {
   state = {
@@ -24,17 +35,66 @@ class ArticlesDisplay extends Component {
     return (
       <div>
         {this.getSearchBar()}
-        {this.getMain()}
+        {this.state.loading ? (
+          <div>
+            <img
+              src={loading}
+              alt="Loading animation"
+              height="25%"
+              width="25%"
+            />
+          </div>
+        ) : (
+          <ArticlesList articles={this.state.articles} />
+        )}
       </div>
     );
   }
 
+  getSearchBar2 = () => {
+    return (
+      <InputGroup className="mb-3">
+        <InputGroup.Prepend>
+          <Button variant="outline-secondary">
+            <img src={logo} alt="Logo" height="20px" length="20px" />
+          </Button>
+        </InputGroup.Prepend>
+
+        <FormControl aria-describedby="basic-addon1" placeholder="author..." />
+        <DropdownButton
+          as={InputGroup.Prepend}
+          variant="outline-secondary"
+          title="Topic"
+          id="input-group-dropdown-1"
+        >
+          <Dropdown.Item href="#">Action</Dropdown.Item>
+          <Dropdown.Item href="#">Another action</Dropdown.Item>
+          <Dropdown.Item href="#">Something else here</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href="#">Separated link</Dropdown.Item>
+        </DropdownButton>
+        <DropdownButton
+          as={InputGroup.Prepend}
+          variant="outline-secondary"
+          title="Sort By"
+          id="input-group-dropdown-1"
+        >
+          <Dropdown.Item href="#">Action</Dropdown.Item>
+          <Dropdown.Item href="#">Another action</Dropdown.Item>
+          <Dropdown.Item href="#">Something else here</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href="#">Separated link</Dropdown.Item>
+        </DropdownButton>
+      </InputGroup>
+    );
+  };
   getSearchBar = () => {
     return (
       <>
+        {/* <span class="glyphicon glyphicon-search" /> */}
         <Card>
           <Card.Body>
-            <Form inline>
+            <InputGroup>
               <FormControl
                 type="text"
                 placeholder="Author"
@@ -82,7 +142,7 @@ class ArticlesDisplay extends Component {
               <Button type="submit" onClick={this.handleSearchSubmit}>
                 Search
               </Button>
-            </Form>
+            </InputGroup>
           </Card.Body>
         </Card>
       </>

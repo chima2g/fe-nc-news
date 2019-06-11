@@ -7,7 +7,8 @@ import UserProfile from "./User/UserProfile";
 import { getUser } from "./Util/utils";
 import NoMatch from "./Util/NoMatch";
 import ErrorPage from "./Util/ErrorPage";
-import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
+import NavigationBar from "./NavigationBar";
+
 // import loading from "./Util/loading.gif";
 
 class App extends React.Component {
@@ -32,56 +33,15 @@ class App extends React.Component {
           height="40%"
           width="40%"
         /> */}
-        {this.getNavBar()}
+        <NavigationBar
+          loggedInUsername={this.state.loggedInUsername}
+          handleLoginNameChange={this.handleLoginNameChange}
+          handleLoginSubmit={this.handleLoginSubmit}
+        />
         {this.getMain()}
       </div>
     );
   }
-
-  getNavBar = () => {
-    {
-      const { loggedInUsername } = this.state;
-      return (
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand>NC News</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href={`/users/${this.state.loggedInUsername}`}>
-                Profile
-              </Nav.Link>
-            </Nav>
-            {!loggedInUsername && (
-              <Form inline>
-                <FormControl
-                  type="text"
-                  placeholder="jessjelly"
-                  className="mr-sm-2"
-                  onChange={this.handleLoginNameChange}
-                />
-                <Button
-                  type="submit"
-                  variant="outline-success"
-                  onClick={this.handleLoginSubmit}
-                >
-                  Login
-                </Button>
-              </Form>
-            )}
-            {loggedInUsername && (
-              <label>
-                Welcome {loggedInUsername}
-                <Button variant="outline-success" onClick={this.handleLogout}>
-                  Logout
-                </Button>
-              </label>
-            )}
-          </Navbar.Collapse>
-        </Navbar>
-      );
-    }
-  };
 
   getMain = () => {
     // if (this.state.loading)

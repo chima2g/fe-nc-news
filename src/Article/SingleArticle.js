@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { getArticle, getCommentsByArticleID, vote } from "../Util/utils";
 import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
-import { errorMessage } from "../Util/utils";
 import Button from "react-bootstrap/Button";
+import {
+  getArticle,
+  getCommentsByArticleID,
+  vote,
+  errorMessage
+} from "../Util/utils";
 
 class SingleArticle extends Component {
   state = {
@@ -27,10 +31,7 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { article } = this.state;
-    const { voteChange } = this.state;
-    const { loggedInUsername } = this.props;
-    const { error } = this.state;
+    const { article, voteChange, loggedInUsername, error } = this.state;
 
     if (error)
       return (

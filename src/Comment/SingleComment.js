@@ -6,9 +6,7 @@ class SingleComment extends Component {
   state = { voteChange: 0 };
 
   render() {
-    const { comment } = this.props;
-    const { voteChange } = this.state;
-    const { loggedInUsername } = this.props;
+    const { comment, voteChange, loggedInUsername } = this.props;
 
     return (
       <div>
