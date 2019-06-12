@@ -6,17 +6,20 @@ class SingleComment extends Component {
   state = { voteChange: 0 };
 
   render() {
-    const { comment, voteChange, loggedInUsername } = this.props;
+    const { comment, loggedInUsername } = this.props;
 
     return (
       <div>
         {loggedInUsername && (
           <div>
-            <Button disabled={voteChange === 1} onClick={this.voteOnComment(1)}>
+            <Button
+              disabled={this.state.voteChange === 1}
+              onClick={this.voteOnComment(1)}
+            >
               Up Vote
             </Button>
             <Button
-              disabled={voteChange === -1}
+              disabled={this.state.voteChange === -1}
               onClick={this.voteOnComment(-1)}
             >
               Down Vote
@@ -31,7 +34,7 @@ class SingleComment extends Component {
         <p>
           Author: {comment.author}, Created:{" "}
           {new Date(comment.created_at).toLocaleString()}, Votes:{" "}
-          {comment.votes + voteChange}
+          {comment.votes + this.state.voteChange}
         </p>
       </div>
     );
