@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { vote, deleteComment } from "../Util/utils";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 class SingleComment extends Component {
   state = { voteChange: 0 };
@@ -9,7 +10,7 @@ class SingleComment extends Component {
     const { comment, loggedInUsername } = this.props;
 
     return (
-      <div>
+      <Container>
         {loggedInUsername && (
           <div>
             <Button
@@ -36,7 +37,7 @@ class SingleComment extends Component {
           {new Date(comment.created_at).toLocaleString()}, Votes:{" "}
           {comment.votes + this.state.voteChange}
         </p>
-      </div>
+      </Container>
     );
   }
 

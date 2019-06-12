@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+
 import {
   getArticle,
   getCommentsByArticleID,
@@ -35,15 +37,15 @@ class SingleArticle extends Component {
 
     if (error)
       return (
-        <div>
+        <Container>
           <p>{error}</p>
           {errorMessage}
-        </div>
+        </Container>
       );
 
     return (
       article && (
-        <div>
+        <Container>
           <h2>{article.title}</h2>
           {loggedInUsername && (
             <div>
@@ -89,7 +91,7 @@ class SingleArticle extends Component {
             undoDeleteComment={this.undoDeleteComment}
             loggedInUsername={loggedInUsername}
           />
-        </div>
+        </Container>
       )
     );
   }

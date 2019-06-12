@@ -3,16 +3,14 @@ import { navigate } from "@reach/router";
 import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
 import logo from "./search-icon.png";
-import {
-  Button,
-  NavDropdown,
-  Dropdown,
-  DropdownButton,
-  FormControl,
-  Card,
-  InputGroup,
-  Spinner
-} from "react-bootstrap";
+import Button from "react-bootstrap/Card";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import FormControl from "react-bootstrap/FormControl";
+import Card from "react-bootstrap/Card";
+import InputGroup from "react-bootstrap/InputGroup";
+import Spinner from "react-bootstrap/Spinner";
 
 class ArticlesDisplay extends Component {
   state = {

@@ -1,6 +1,5 @@
 CSSS!!!!!!
 
-2)Comments showing no votes
 3) login with bad username causes console log error when that's the first thing you do after loading the app.
 This has been removed by deleting programatic rendering in getMain  
 4) No errors in the console

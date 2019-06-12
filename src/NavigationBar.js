@@ -1,5 +1,9 @@
 import React from "react";
-import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import FormControl from "react-bootstrap/from";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
 
 const NavigationBar = props => {
   const { loggedInUsername } = props;
