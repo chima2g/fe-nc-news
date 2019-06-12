@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
-import loading from "../Util/loading.gif";
 import logo from "./search-icon.png";
 import {
   Button,
@@ -11,9 +10,8 @@ import {
   DropdownButton,
   FormControl,
   Card,
-  Row,
-  Form,
-  InputGroup
+  InputGroup,
+  Spinner
 } from "react-bootstrap";
 
 class ArticlesDisplay extends Component {
@@ -36,14 +34,9 @@ class ArticlesDisplay extends Component {
       <div>
         {this.getSearchBar()}
         {this.state.loading ? (
-          <div>
-            <img
-              src={loading}
-              alt="Loading animation"
-              height="25%"
-              width="25%"
-            />
-          </div>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
         ) : (
           <ArticlesList articles={this.state.articles} />
         )}
@@ -152,9 +145,9 @@ class ArticlesDisplay extends Component {
   getMain = () => {
     if (this.state.loading)
       return (
-        <div>
-          <img src={loading} alt="Loading animation" height="25%" width="25%" />
-        </div>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       );
     else return <ArticlesList articles={this.state.articles} />;
   };

@@ -37,6 +37,7 @@ class App extends React.Component {
           loggedInUsername={this.state.loggedInUsername}
           handleLoginNameChange={this.handleLoginNameChange}
           handleLoginSubmit={this.handleLoginSubmit}
+          handleLogout={this.handleLogout}
         />
         {this.getMain()}
       </div>
@@ -104,6 +105,7 @@ class App extends React.Component {
   };
 
   handleLogout = event => {
+    event.preventDefault();
     this.setState({ loggedInUsername: null, usernameToLogin: null });
     localStorage.removeItem("loggedInUsername");
   };

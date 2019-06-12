@@ -3,7 +3,6 @@ import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
 
 const NavigationBar = props => {
   const { loggedInUsername } = props;
-
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>NC News</Navbar.Brand>
