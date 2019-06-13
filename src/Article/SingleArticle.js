@@ -3,6 +3,7 @@ import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Voter from "../Util/Voter";
 
 import {
   getArticle,
@@ -49,18 +50,7 @@ class SingleArticle extends Component {
           <h2>{article.title}</h2>
           {loggedInUsername && (
             <div>
-              <Button
-                disabled={voteChange === 1}
-                onClick={this.voteOnArticle(1)}
-              >
-                Up Vote
-              </Button>
-              <Button
-                disabled={voteChange === -1}
-                onClick={this.voteOnArticle(-1)}
-              >
-                Down Vote
-              </Button>
+              <Voter vote={this.voteOnArticle} voteChange={voteChange} />
               <Button
                 onClick={() =>
                   this.setState({

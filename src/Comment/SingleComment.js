@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { vote, deleteComment } from "../Util/utils";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Voter from "../Util/Voter";
 
 class SingleComment extends Component {
   state = { voteChange: 0 };
@@ -13,18 +14,10 @@ class SingleComment extends Component {
       <Container>
         {loggedInUsername && (
           <div>
-            <Button
-              disabled={this.state.voteChange === 1}
-              onClick={this.voteOnComment(1)}
-            >
-              Up Vote
-            </Button>
-            <Button
-              disabled={this.state.voteChange === -1}
-              onClick={this.voteOnComment(-1)}
-            >
-              Down Vote
-            </Button>
+            <Voter
+              vote={this.voteOnComment}
+              voteChange={this.state.voteChange}
+            />
             {comment.author === loggedInUsername && (
               <Button onClick={this._deleteComment}>Delete</Button>
             )}
