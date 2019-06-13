@@ -34,6 +34,7 @@ class App extends React.Component {
           width="40%"
         /> */}
         <NavigationBar
+          disableLoginButton={this.state.usernameToLogin ? false : true}
           loggedInUsername={this.state.loggedInUsername}
           handleLoginNameChange={this.handleLoginNameChange}
           handleLoginSubmit={this.handleLoginSubmit}

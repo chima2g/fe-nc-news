@@ -3,7 +3,7 @@ import { navigate } from "@reach/router";
 import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
 import logo from "./search-icon.png";
-import Button from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
