@@ -33,8 +33,8 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { article, voteChange, loggedInUsername, error } = this.state;
-
+    const { article, voteChange, error } = this.state;
+    const { loggedInUsername } = this.props;
     if (error)
       return (
         <Container>
