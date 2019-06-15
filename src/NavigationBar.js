@@ -35,12 +35,12 @@ const NavigationBar = props => {
           </Form>
         )}
         {loggedInUsername && (
-          <label>
-            Welcome {loggedInUsername}
+          <div>
+            <label class="mr-3">Welcome {loggedInUsername}</label>
             <Button variant="outline-success" onClick={props.handleLogout}>
               Logout
             </Button>
-          </label>
+          </div>
         )}
       </Navbar.Collapse>
     </Navbar>
