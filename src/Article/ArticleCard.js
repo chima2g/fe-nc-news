@@ -3,20 +3,22 @@ import Card from "react-bootstrap/Card";
 
 const ArticleCard = ({ article }) => {
   return (
-    <Card key={article.article_id}>
-      <Card.Header as="h5">{article.title}</Card.Header>
-      <Card.Body>
-        <p>{article.body}</p>
-        <blockquote className="blockquote mb-0">
-          <footer className="blockquote-footer">
-            Author: {article.author}, Topic: {article.topic}, Article ID:{" "}
-            {article.article_id}, Created:{" "}
-            {new Date(article.created_at).toLocaleString()}, Votes:{" "}
-            {article.votes}, Comments: {article.comment_count}
-          </footer>
-        </blockquote>
-      </Card.Body>
-    </Card>
+    <div class="mt-3">
+      <Card key={article.article_id} class="mt-5">
+        <Card.Header as="h5">{article.title}</Card.Header>
+        <Card.Body>
+          <p>{article.body}</p>
+          <blockquote className="blockquote mb-0">
+            <footer className="blockquote-footer">
+              Author: {article.author}, Topic: {article.topic}, Article ID:{" "}
+              {article.article_id}, Created:{" "}
+              {new Date(article.created_at).toLocaleString()}, Votes:{" "}
+              {article.votes}, Comments: {article.comment_count}
+            </footer>
+          </blockquote>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
