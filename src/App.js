@@ -66,6 +66,7 @@ class App extends React.Component {
             path="/users/:username"
             loggedInUsername={this.state.loggedInUsername}
           />
+          <ArticlesDisplay path="/users/:search_author/articles" />
           <ErrorPage path="error" />
           <NoMatch default />
         </Router>

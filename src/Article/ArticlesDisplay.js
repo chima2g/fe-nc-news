@@ -16,14 +16,21 @@ class ArticlesDisplay extends Component {
   state = {
     articles: [],
     topics: [],
-    searchTopic: "any",
-    searchSort: "any",
-    searchAuthor: "",
+    search_topic: "any",
+    search_sort: "any",
+    search_author: "",
     loading: true
   };
 
   componentDidMount() {
-    getArticles().then(articles => this.setState({ articles }));
+    const { search_author } = this.props;
+
+    if (search_author)
+      getArticles(`?author=${search_author}`).then(articles =>
+        this.setState({ articles, search_author })
+      );
+    else getArticles().then(articles => this.setState({ articles }));
+
     getTopics().then(topics => this.setState({ topics, loading: false }));
   }
 
@@ -90,13 +97,13 @@ class ArticlesDisplay extends Component {
                 type="text"
                 placeholder="Author"
                 onChange={event => {
-                  this.setState({ searchAuthor: event.target.value });
+                  this.setState({ search_author: event.target.value });
                 }}
               />
               <NavDropdown
                 title="Topic"
                 onSelect={eventKey => {
-                  this.setState({ searchTopic: eventKey });
+                  this.setState({ search_topic: eventKey });
                 }}
               >
                 <NavDropdown.Item key="any" eventKey="any">
@@ -111,7 +118,7 @@ class ArticlesDisplay extends Component {
               <NavDropdown
                 title="Sort by"
                 onSelect={eventKey => {
-                  this.setState({ searchSort: eventKey });
+                  this.setState({ search_sort: eventKey });
                 }}
               >
                 <NavDropdown.Item key="title" eventKey="title">
@@ -151,7 +158,7 @@ class ArticlesDisplay extends Component {
   };
 
   /* Changes the value in the given object's single key value pair to the target event's
-   * value, e.g. changes { searchTopic : "any" } to { searchTopic : "coding" }.
+   * value, e.g. changes { search_topic : "any" } to { search_topic : "coding" }.
    * It then uses this object to set state
    */
   handleChange = searchTerm => {
@@ -163,11 +170,11 @@ class ArticlesDisplay extends Component {
 
   handleSearchSubmit = event => {
     event.preventDefault();
-    const { searchTopic, searchSort, searchAuthor } = this.state;
+    const { search_topic, search_sort, search_author } = this.state;
 
-    let topicCriteria = searchTopic === "any" ? "" : `topic=${searchTopic}`;
-    let sortCriteria = searchSort === "any" ? "" : `sort_by=${searchSort}`;
-    let authorCriteria = searchAuthor === "" ? "" : `author=${searchAuthor}`;
+    let topicCriteria = search_topic === "any" ? "" : `topic=${search_topic}`;
+    let sortCriteria = search_sort === "any" ? "" : `sort_by=${search_sort}`;
+    let authorCriteria = search_author === "" ? "" : `author=${search_author}`;
 
     const searchCriteria = [topicCriteria, sortCriteria, authorCriteria];
 
