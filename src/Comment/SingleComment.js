@@ -32,9 +32,13 @@ class SingleComment extends Component {
           </InputGroup>
           <p className="mt-3">{comment.body}</p>
           <p>
-            Author: {comment.author}, Created:{" "}
-            {new Date(comment.created_at).toLocaleString()}, Votes:{" "}
-            {comment.votes + this.state.voteChange}
+            <label className="mr-3">Author: {comment.author}</label>
+            <label className="mr-3">
+              Created: {new Date(comment.created_at).toLocaleString()}
+            </label>
+            <label className="mr-3">
+              Votes: {comment.votes + this.state.voteChange}
+            </label>
           </p>
         </Card.Body>
       </Card>
