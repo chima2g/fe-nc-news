@@ -36,7 +36,10 @@ const NavigationBar = props => {
         )}
         {loggedInUsername && (
           <div>
-            <label class="mr-3">Welcome {loggedInUsername}</label>
+            <label class="mr-3">
+              Welcome {loggedInUsername}
+              <i className="fas fa-user-circle ml-1" />
+            </label>
             <Button variant="outline-success" onClick={props.handleLogout}>
               Logout
             </Button>
