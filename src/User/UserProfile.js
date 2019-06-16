@@ -13,9 +13,7 @@ class UserProfile extends React.Component {
     return (
       <Container className="mt-3">
         {justLoggedIn && loggedInUsername && <p>Good to have you back!</p>}
-        <p>
-          {!loggedInUsername ? "Please log in!" : this.getProfile(loggedInUser)}
-        </p>
+        {!loggedInUsername ? "Please log in!" : this.getProfile(loggedInUser)}
       </Container>
     );
   }
