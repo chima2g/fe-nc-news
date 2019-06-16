@@ -23,7 +23,7 @@ class SingleComment extends Component {
               />
               {comment.author === loggedInUsername && (
                 <Button onClick={this._deleteComment}>
-                  <i class="far fa-trash-alt" />
+                  <i className="far fa-trash-alt" />
                 </Button>
               )}
             </div>

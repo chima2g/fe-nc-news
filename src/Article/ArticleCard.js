@@ -3,8 +3,8 @@ import Card from "react-bootstrap/Card";
 
 const ArticleCard = ({ article }) => {
   return (
-    <div class="mt-3">
-      <Card key={article.article_id} class="mt-5">
+    <div className="mt-3">
+      <Card key={article.article_id} className="mt-5">
         <Card.Header as="h5">{article.title}</Card.Header>
         <Card.Body>
           <p>{article.body}</p>

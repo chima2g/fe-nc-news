@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { Link } from "@reach/router";
-import { getUser } from "../Util/utils";
 
 class UserProfile extends React.Component {
   render() {

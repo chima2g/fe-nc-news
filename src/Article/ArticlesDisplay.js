@@ -89,7 +89,7 @@ class ArticlesDisplay extends Component {
   getSearchBar = () => {
     return (
       <>
-        {/* <span class="glyphicon glyphicon-search" /> */}
+        {/* <span className="glyphicon glyphicon-search" /> */}
         <Card>
           <Card.Body>
             <InputGroup>

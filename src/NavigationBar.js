@@ -4,7 +4,6 @@ import FormControl from "react-bootstrap/FormControl";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
 
 const NavigationBar = props => {
   const { loggedInUsername, loggedInUser } = props;
