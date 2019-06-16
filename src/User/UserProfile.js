@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import { Link } from "@reach/router";
 
 class UserProfile extends React.Component {
@@ -10,10 +11,10 @@ class UserProfile extends React.Component {
     let { loggedInUsername } = this.props;
 
     return (
-      <div>
+      <Container className="mt-3">
         {justLoggedIn && loggedInUsername && <p>Good to have you back!</p>}
         <p>{!loggedInUsername ? "Please log in!" : this.getProfile()}</p>
-      </div>
+      </Container>
     );
   }
 
