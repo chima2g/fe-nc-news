@@ -48,7 +48,7 @@ class SingleArticle extends Component {
     return (
       article && (
         <Container className="mt-4">
-          <InputGroup>
+          <InputGroup className="mb-3">
             <h2 className="mr-3">{article.title}</h2>
             {loggedInUsername && (
               <div>
