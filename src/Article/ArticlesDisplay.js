@@ -93,13 +93,15 @@ class ArticlesDisplay extends Component {
         <Card>
           <Card.Body>
             <InputGroup>
-              <FormControl
-                type="text"
-                placeholder="Author"
-                onChange={event => {
-                  this.setState({ search_author: event.target.value });
-                }}
-              />
+              {this.props.search_author ? null : (
+                <FormControl
+                  type="text"
+                  placeholder="Author"
+                  onChange={event => {
+                    this.setState({ search_author: event.target.value });
+                  }}
+                />
+              )}
               <NavDropdown
                 title="Topic"
                 onSelect={eventKey => {

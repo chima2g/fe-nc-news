@@ -22,6 +22,9 @@ class App extends React.Component {
   componentDidMount() {
     const loggedInUsername = localStorage.getItem("loggedInUsername");
     if (loggedInUsername) this.setState({ loggedInUsername });
+
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) this.setState({ loggedInUser });
   }
 
   render() {
@@ -36,6 +39,7 @@ class App extends React.Component {
         <NavigationBar
           disableLoginButton={this.state.usernameToLogin ? false : true}
           loggedInUsername={this.state.loggedInUsername}
+          loggedInUser={this.state.loggedInUser}
           handleLoginNameChange={this.handleLoginNameChange}
           handleLoginSubmit={this.handleLoginSubmit}
           handleLogout={this.handleLogout}
@@ -65,6 +69,7 @@ class App extends React.Component {
           <UserProfile
             path="/users/:username"
             loggedInUsername={this.state.loggedInUsername}
+            loggedInUser={this.state.loggedInUser}
           />
           <ArticlesDisplay path="/users/:search_author/articles" />
           <ErrorPage path="error" />
@@ -87,10 +92,12 @@ class App extends React.Component {
       .then(user => {
         if (user) {
           localStorage.setItem("loggedInUsername", usernameToLogin);
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
 
           this.setState({
             loggedInUsername: usernameToLogin,
             usernameToLogin: null,
+            loggedInUser: user,
             loading: false
           });
           navigate(`../users/${usernameToLogin}`, {

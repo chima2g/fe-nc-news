@@ -4,9 +4,11 @@ import FormControl from "react-bootstrap/FormControl";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
 
 const NavigationBar = props => {
-  const { loggedInUsername } = props;
+  const { loggedInUsername, loggedInUser } = props;
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>NC News</Navbar.Brand>
@@ -36,9 +38,15 @@ const NavigationBar = props => {
         )}
         {loggedInUsername && (
           <div>
-            <label class="mr-3">
-              Welcome {loggedInUsername}
-              <i className="fas fa-user-circle ml-1" />
+            <label className="mr-3">
+              Welcome {loggedInUsername}{" "}
+              <img
+                src={loggedInUser.avatar_url.replace("https://www.", "http://")}
+                alt="user avatar"
+                height="20px"
+                width="20px"
+                className="rounded-circle"
+              />
             </label>
             <Button variant="outline-success" onClick={props.handleLogout}>
               Logout

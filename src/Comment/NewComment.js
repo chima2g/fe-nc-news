@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import { postComment } from "../Util/utils";
-import loading from "../Util/loading.gif";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 class NewComment extends Component {
   state = { body: null, loading: false };
@@ -10,7 +10,9 @@ class NewComment extends Component {
   render() {
     if (this.state.loading)
       return (
-        <img src={loading} alt="Loading animation" height="25%" width="25%" />
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       );
     else
       return (
