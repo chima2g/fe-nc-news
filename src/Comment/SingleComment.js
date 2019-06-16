@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { vote, deleteComment } from "../Util/utils";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import InputGroup from "react-bootstrap/InputGroup";
 import Voter from "../Util/Voter";
 
 class SingleComment extends Component {
@@ -12,18 +13,22 @@ class SingleComment extends Component {
 
     return (
       <Container>
-        {loggedInUsername && (
-          <div>
-            <Voter
-              vote={this.voteOnComment}
-              voteChange={this.state.voteChange}
-            />
-            {comment.author === loggedInUsername && (
-              <Button onClick={this._deleteComment}>Delete</Button>
-            )}
-          </div>
-        )}
-        <h3>Comment {comment.comment_id}: </h3>
+        <InputGroup>
+          <h3 className="mr-3">Comment {comment.comment_id}</h3>
+          {loggedInUsername && (
+            <div>
+              <Voter
+                vote={this.voteOnComment}
+                voteChange={this.state.voteChange}
+              />
+              {comment.author === loggedInUsername && (
+                <Button onClick={this._deleteComment}>
+                  <i class="far fa-trash-alt" />
+                </Button>
+              )}
+            </div>
+          )}
+        </InputGroup>
         <p>{comment.body}</p>
         <p>
           Author: {comment.author}, Created:{" "}

@@ -6,10 +6,10 @@ const Voter = props => {
     <>
       <div class="btn-group mr-2" role="group" aria-label="Voting group">
         <Button disabled={props.voteChange === 1} onClick={props.vote(1)}>
-          Up Vote
+          <i className="far fa-thumbs-up" />
         </Button>
         <Button disabled={props.voteChange === -1} onClick={props.vote(-1)}>
-          Down Vote
+          <i className="far fa-thumbs-down" />
         </Button>
       </div>
     </>

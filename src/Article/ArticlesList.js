@@ -9,7 +9,7 @@ const ArticlesList = props => {
     <div class="mt-3 mr-5">
       <ul>
         {articles.map(article => (
-          <Link to={`${article.article_id}`} key={article.article_id}>
+          <Link to={`/articles/${article.article_id}`} key={article.article_id}>
             <ArticleCard article={article} />
           </Link>
         ))}

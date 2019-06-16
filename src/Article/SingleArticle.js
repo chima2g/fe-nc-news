@@ -3,6 +3,7 @@ import CommentsList from "../Comment/CommentsList";
 import NewComment from "../Comment/NewComment";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import InputGroup from "react-bootstrap/InputGroup";
 import Voter from "../Util/Voter";
 
 import {
@@ -46,22 +47,24 @@ class SingleArticle extends Component {
 
     return (
       article && (
-        <Container>
-          <h2>{article.title}</h2>
-          {loggedInUsername && (
-            <div>
-              <Voter vote={this.voteOnArticle} voteChange={voteChange} />
-              <Button
-                onClick={() =>
-                  this.setState({
-                    enableCommentEditing: true
-                  })
-                }
-              >
-                Comment
-              </Button>
-            </div>
-          )}
+        <Container className="mt-4">
+          <InputGroup>
+            <h2 className="mr-3">{article.title}</h2>
+            {loggedInUsername && (
+              <div>
+                <Voter vote={this.voteOnArticle} voteChange={voteChange} />
+                <Button
+                  onClick={() =>
+                    this.setState({
+                      enableCommentEditing: true
+                    })
+                  }
+                >
+                  <i className="far fa-comment" />
+                </Button>
+              </div>
+            )}
+          </InputGroup>
           <p>{article.body}</p>
           <p>
             Author: {article.author}, Topic: {article.topic}, Created at:{" "}
