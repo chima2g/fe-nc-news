@@ -67,9 +67,13 @@ class SingleArticle extends Component {
           </InputGroup>
           <p>{article.body}</p>
           <p>
-            Author: {article.author}, Topic: {article.topic}, Created at:{" "}
-            {new Date(article.created_at).toLocaleString()}, Votes:{" "}
-            {article.votes + voteChange}
+            <label className="mr-3">Author: {article.author}</label>
+            <label className="mr-3">Topic: {article.topic}</label>
+            <label className="mr-3">Article ID: {article.article_id}</label>
+            <label className="mr-3">
+              Created: {new Date(article.created_at).toLocaleString()}
+            </label>
+            <label className="mr-3">Votes: {article.votes + voteChange}</label>
           </p>
           {this.state.enableCommentEditing && (
             <NewComment
