@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import { postComment } from "../Util/utils";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 
 class NewComment extends Component {
@@ -16,24 +17,24 @@ class NewComment extends Component {
       );
     else
       return (
-        <form>
-          <label>
-            <textarea
+        <Form>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control
+              as="textarea"
+              rows="10"
               value={this.state.body ? this.state.body : ""}
               placeholder="Your comment"
-              rows="10"
-              cols="50"
               onChange={this.handleCommentChange}
             />
-          </label>
-          <Button
-            type="submit"
-            disabled={this.state.body ? false : true}
-            onClick={this.handleCommentSubmit}
-          >
-            Post
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              onClick={this.handleCommentSubmit}
+              disabled={this.state.body ? false : true}
+            >
+              Post
+            </Button>
+          </Form.Group>
+        </Form>
       );
   }
 
