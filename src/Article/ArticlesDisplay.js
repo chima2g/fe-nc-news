@@ -100,17 +100,6 @@ class ArticlesDisplay extends Component {
     );
   }
 
-  /* Changes the value in the given object's single key value pair to the target event's
-   * value, e.g. changes { search_topic : "any" } to { search_topic : "coding" }.
-   * It then uses this object to set state
-   */
-  handleChange = searchTerm => {
-    return event => {
-      searchTerm[Object.keys(searchTerm)[0]] = event.target.value;
-      this.setState(searchTerm);
-    };
-  };
-
   handleSearchSubmit = event => {
     event.preventDefault();
     const { search_topic, search_sort, search_author } = this.state;

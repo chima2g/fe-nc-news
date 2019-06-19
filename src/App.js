@@ -9,8 +9,6 @@ import NoMatch from "./Util/NoMatch";
 import ErrorPage from "./Util/ErrorPage";
 import NavigationBar from "./NavigationBar";
 
-// import loading from "./Util/loading.gif";
-
 class App extends React.Component {
   state = {
     loggedInUsername: null,
@@ -30,12 +28,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <img
-          src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png"
-          alt="Northcoders Logo"
-          height="40%"
-          width="40%"
-        /> */}
         <NavigationBar
           disableLoginButton={this.state.usernameToLogin ? false : true}
           loggedInUsername={this.state.loggedInUsername}
@@ -50,13 +42,6 @@ class App extends React.Component {
   }
 
   getMain = () => {
-    // if (this.state.loading)
-    //   return (
-    //     <div>
-    //       <img src={loading} alt="Loading animation" height="25%" width="25%" />
-    //     </div>
-    //   );
-    // else
     return (
       <div>
         <Router>
