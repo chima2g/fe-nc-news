@@ -49,43 +49,6 @@ class ArticlesDisplay extends Component {
     );
   }
 
-  getSearchBar2 = () => {
-    return (
-      <InputGroup className="mb-3">
-        <InputGroup.Prepend>
-          <Button variant="outline-secondary">
-            <img src={logo} alt="Logo" height="20px" length="20px" />
-          </Button>
-        </InputGroup.Prepend>
-
-        <FormControl aria-describedby="basic-addon1" placeholder="author..." />
-        <DropdownButton
-          as={InputGroup.Prepend}
-          variant="outline-secondary"
-          title="Topic"
-          id="input-group-dropdown-1"
-        >
-          <Dropdown.Item href="#">Action</Dropdown.Item>
-          <Dropdown.Item href="#">Another action</Dropdown.Item>
-          <Dropdown.Item href="#">Something else here</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#">Separated link</Dropdown.Item>
-        </DropdownButton>
-        <DropdownButton
-          as={InputGroup.Prepend}
-          variant="outline-secondary"
-          title="Sort By"
-          id="input-group-dropdown-1"
-        >
-          <Dropdown.Item href="#">Action</Dropdown.Item>
-          <Dropdown.Item href="#">Another action</Dropdown.Item>
-          <Dropdown.Item href="#">Something else here</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#">Separated link</Dropdown.Item>
-        </DropdownButton>
-      </InputGroup>
-    );
-  };
   getSearchBar = () => {
     return (
       <>
@@ -147,16 +110,6 @@ class ArticlesDisplay extends Component {
         </Card>
       </>
     );
-  };
-
-  getMain = () => {
-    if (this.state.loading)
-      return (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      );
-    else return <ArticlesList articles={this.state.articles} />;
   };
 
   /* Changes the value in the given object's single key value pair to the target event's
