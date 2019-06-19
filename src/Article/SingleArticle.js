@@ -5,45 +5,35 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Voter from "../Util/Voter";
+import { navigate } from "@reach/router";
 
-import {
-  getArticle,
-  getCommentsByArticleID,
-  vote,
-  errorMessage
-} from "../Util/utils";
+import { getArticle, getCommentsByArticleID, vote } from "../Util/utils";
 
 class SingleArticle extends Component {
   state = {
     article: null,
     comments: [],
     voteChange: 0,
-    enableCommentEditing: false,
-    error: null
+    enableCommentEditing: false
   };
 
   componentDidMount() {
     getArticle(this.props.article_id)
       .then(article => {
         getCommentsByArticleID(this.props.article_id).then(comments =>
-          this.setState({ article, comments, error: null })
+          this.setState({ article, comments })
         );
       })
       .catch(error => {
-        this.setState({ error: error.response.data.msg });
+        navigate("../error", {
+          state: { msg: error.response.data.msg }
+        });
       });
   }
 
   render() {
-    const { article, voteChange, error } = this.state;
+    const { article, voteChange } = this.state;
     const { loggedInUsername } = this.props;
-    if (error)
-      return (
-        <Container>
-          <p>{error}</p>
-          {errorMessage}
-        </Container>
-      );
 
     return (
       article && (
