@@ -36,14 +36,6 @@ class App extends React.Component {
           handleLoginSubmit={this.handleLoginSubmit}
           handleLogout={this.handleLogout}
         />
-        {this.getMain()}
-      </div>
-    );
-  }
-
-  getMain = () => {
-    return (
-      <div>
         <Router>
           <Redirect from="/" to="articles" noThrow />
           <ArticlesDisplay path="/articles" />
@@ -62,7 +54,7 @@ class App extends React.Component {
         </Router>
       </div>
     );
-  };
+  }
 
   handleLoginNameChange = event => {
     this.setState({ usernameToLogin: event.target.value });
