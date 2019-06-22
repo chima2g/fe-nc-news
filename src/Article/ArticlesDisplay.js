@@ -4,6 +4,7 @@ import { getArticles, getTopics } from "../Util/utils";
 import ArticlesList from "./ArticlesList";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -36,57 +37,62 @@ class ArticlesDisplay extends Component {
       <div>
         <Card>
           <Card.Body>
-            <InputGroup>
-              {this.props.search_author ? null : (
-                <FormControl
-                  type="text"
-                  placeholder="Author"
-                  onChange={event => {
-                    this.setState({ search_author: event.target.value });
+            <Form>
+              <InputGroup>
+                {this.props.search_author ? null : (
+                  <FormControl
+                    type="text"
+                    placeholder="Author"
+                    onChange={event => {
+                      this.setState({ search_author: event.target.value });
+                    }}
+                  />
+                )}
+                <NavDropdown
+                  title="Topic"
+                  onSelect={eventKey => {
+                    this.setState({ search_topic: eventKey });
                   }}
-                />
-              )}
-              <NavDropdown
-                title="Topic"
-                onSelect={eventKey => {
-                  this.setState({ search_topic: eventKey });
-                }}
-              >
-                <NavDropdown.Item key="any" eventKey="any">
-                  any
-                </NavDropdown.Item>
-                {this.state.topics.map(topic => (
-                  <NavDropdown.Item key={topic.slug} eventKey={topic.slug}>
-                    {topic.slug}
+                >
+                  <NavDropdown.Item key="any" eventKey="any">
+                    any
                   </NavDropdown.Item>
-                ))}
-              </NavDropdown>
-              <NavDropdown
-                title="Sort by"
-                onSelect={eventKey => {
-                  this.setState({ search_sort: eventKey });
-                }}
-              >
-                <NavDropdown.Item key="title" eventKey="title">
-                  title
-                </NavDropdown.Item>
-                <NavDropdown.Item key="author" eventKey="author">
-                  author
-                </NavDropdown.Item>
-                <NavDropdown.Item key="votes" eventKey="votes">
-                  votes
-                </NavDropdown.Item>
-                <NavDropdown.Item key="comment_count" eventKey="comment_count">
-                  comment count
-                </NavDropdown.Item>
-                <NavDropdown.Item key="created_at" eventKey="created_at">
-                  date
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Button type="submit" onClick={this.handleSearchSubmit}>
-                Search
-              </Button>
-            </InputGroup>
+                  {this.state.topics.map(topic => (
+                    <NavDropdown.Item key={topic.slug} eventKey={topic.slug}>
+                      {topic.slug}
+                    </NavDropdown.Item>
+                  ))}
+                </NavDropdown>
+                <NavDropdown
+                  title="Sort by"
+                  onSelect={eventKey => {
+                    this.setState({ search_sort: eventKey });
+                  }}
+                >
+                  <NavDropdown.Item key="title" eventKey="title">
+                    title
+                  </NavDropdown.Item>
+                  <NavDropdown.Item key="author" eventKey="author">
+                    author
+                  </NavDropdown.Item>
+                  <NavDropdown.Item key="votes" eventKey="votes">
+                    votes
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    key="comment_count"
+                    eventKey="comment_count"
+                  >
+                    comment count
+                  </NavDropdown.Item>
+                  <NavDropdown.Item key="created_at" eventKey="created_at">
+                    date
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <Button type="submit" onClick={this.handleSearchSubmit}>
+                  Search
+                </Button>
+              </InputGroup>
+            </Form>
           </Card.Body>
         </Card>
         {this.state.loading ? (
