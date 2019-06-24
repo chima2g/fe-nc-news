@@ -24,6 +24,10 @@ This web application was built using React & Bootstrap 4. Please see the [React 
 
 # Useful Links:
 
-[Back end repo](https://github.com/chima2g/be-nc-news/)
+[Front end deployed version](https://fe-nc-news-chima2g.herokuapp.com/)
 
-[Deployed version](https://fe-nc-news-chima2g.herokuapp.com/)
+[Front end repo](https://github.com/chima2g/fe-nc-news/)
+
+[Back end deployed version](https://be-nc-news-chima2g.herokuapp.com/)
+
+[Back end repo](https://github.com/chima2g/fe-nc-news/)
